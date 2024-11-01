@@ -613,8 +613,13 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      local nvcc = '/usr/local/cuda/bin/nvcc'
       local servers = {
-        clangd = {},
+        clangd = {
+          capabilities = capabilities,
+          cmd = { vim.fn.stdpath 'data' .. '/mason/bin/clangd', nvcc and '--query-driver=' .. nvcc },
+          filetypes = { 'c', 'cpp', 'h', 'hpp', 'inl', 'objc', 'objcpp', 'cuda', 'proto' },
+        },
         marksman = {},
         -- gopls = {},
         -- pyright = {},
