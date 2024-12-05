@@ -617,7 +617,7 @@ require('lazy').setup({
       local servers = {
         clangd = {
           capabilities = capabilities,
-          cmd = { vim.fn.stdpath 'data' .. '/mason/bin/clangd', nvcc and '--query-driver=' .. nvcc },
+          cmd = { vim.fn.stdpath 'data' .. '/mason/bin/clangd', nvcc and '--query-driver=' .. nvcc, "--fallback-style=webkit" },
           filetypes = { 'c', 'cpp', 'h', 'hpp', 'inl', 'objc', 'objcpp', 'cuda', 'proto' },
         },
         marksman = {},
